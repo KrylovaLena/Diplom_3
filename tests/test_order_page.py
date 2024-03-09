@@ -5,6 +5,7 @@ from locators.main_page_locators import MainPageLocators
 from pages.orders_page import OrdersPage
 from pages.main_page import MainPage
 from pages.header_page import HeaderPage
+from helpers import Helpers
 
 
 
@@ -45,7 +46,7 @@ class TestOrderListPage:
         main_page.click_order_feed_button()
         order_page = OrdersPage(driver)
         prev_counter_value = order_page.get_counter_value(counter)
-        order_page.create_order(token)
+        Helpers().create_order(token)
         current_counter_value = order_page.get_counter_value(counter)
         assert current_counter_value > prev_counter_value
 

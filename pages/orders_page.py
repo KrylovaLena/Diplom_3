@@ -1,8 +1,8 @@
 import allure
-import requests
+
 from locators.orders_page_locators import OrdersPageLocators
 from pages.base_page import BasePage
-from data import Site
+
 
 
 class OrdersPage(BasePage):
@@ -26,7 +26,7 @@ class OrdersPage(BasePage):
 
     @allure.step('Проверяем переход на страницу История заказов')
     def check_switch_on_order_history(self):
-        self.wait_for_visibility_of_element(OrdersPageLocators.ENABLED_ORDER_HISTORY_BUTTON)
+        self.wait_until_element_visibility(OrdersPageLocators.ENABLED_ORDER_HISTORY_BUTTON)
         return self.get_current_url()
 
     @allure.step('Получаем номера всех заказов в Ленте заказов')
@@ -40,7 +40,7 @@ class OrdersPage(BasePage):
 
     @allure.step('Получаем значение счетчика заказов')
     def get_counter_value(self, counter):
-        self.wait_for_visibility_of_element(OrdersPageLocators.ORDERS_LIST_TITLE)
+        self.wait_until_element_visibility(OrdersPageLocators.ORDERS_LIST_TITLE)
         return self.get_actually_text(counter)
 
     @allure.step('Нажимаем кнопку «Выход»')
@@ -48,11 +48,3 @@ class OrdersPage(BasePage):
         self.wait_for_element_to_be_clickable(OrdersPageLocators.EXIT_BUTTON)
         self.click_on_element(OrdersPageLocators.EXIT_BUTTON)
 
-    @allure.step('Создать заказ')
-    def create_order(self, token):
-        requests.post(Site.order, headers={'Authorization': token}, data=OrdersPageLocators.INGREDIENTS)
-
-    @allure.step('Получить заказы пользователя')
-    def get_user_orders(self, token):
-        user_orders = requests.get(Site.order, headers={'Authorization': token}).json()["orders"]
-        return user_orders

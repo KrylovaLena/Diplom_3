@@ -16,7 +16,7 @@ class MainPage(BasePage):
 
     @allure.step('Проверяем, что появилось всплывающее окно с деталями игридиента')
     def check_show_window_with_details(self):
-        self.wait_for_visibility_of_element(MainPageLocators.INGREDIENT_DETAILS_POPUP)
+        self.wait_until_element_visibility(MainPageLocators.INGREDIENT_DETAILS_POPUP)
         return self.get_actually_text(MainPageLocators.INGREDIENT_DETAILS_POPUP)
 
     @allure.step('Закрываем попап крестиком')
@@ -29,7 +29,7 @@ class MainPage(BasePage):
 
     @allure.step('Проверяем, что заказ оформлен и появился идентификатор заказа')
     def check_show_window_with_order_id(self):
-        self.wait_for_visibility_of_element(MainPageLocators.ORDER_ID)
+        self.wait_until_element_visibility(MainPageLocators.ORDER_ID)
         return self.get_actually_text(MainPageLocators.ORDER_ID)
 
     @allure.step('Добавить ингридиент в заказ')

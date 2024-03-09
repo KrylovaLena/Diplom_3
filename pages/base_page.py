@@ -24,18 +24,10 @@ class BasePage:
         WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(locator))
         self.driver.find_element(*locator).send_keys(text)
 
-    @allure.step('Получить текст элемента')
-    def get_text_of_element(self, locator):
-        return self.driver.find_element(*locator).text
-
     @allure.step('Получить текущий текст')
     def get_actually_text(self, locator):
         actually_text = self.driver.find_element(*locator).text
         return actually_text
-
-    @allure.step('Найти элемент на странице')
-    def find_my_element(self, locator):
-        return WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator))
 
     @allure.step('Проверить присутствие элемента на странице')
     def check_presense(self, locator):
@@ -48,25 +40,12 @@ class BasePage:
 
     @allure.step('Дождаться видимости элемента')
     def wait_until_element_visibility(self, locator):
-        WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator))
-
-    @allure.step('Дождаться невидимости элемента')
-    def wait_until_element_invisibility(self, locator):
-        return WebDriverWait(self.driver, 10).until(expected_conditions.invisibility_of_element_located(locator))
+        return WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator))
 
     @allure.step('Получить текущую ссылку')
     def get_current_url(self):
         current_url = self.driver.current_url
         return current_url
-
-    @allure.step('Отправить текст в поле ввода')
-    def send_keys(self, locator, value):
-        self.driver.find_element(*locator).send_keys(value)
-
-    @allure.step('Дождаться видимости элемента')
-    def wait_for_visibility_of_element(self, locator):
-        WebDriverWait(self.driver, 3).until(
-            expected_conditions.visibility_of_element_located(locator))
 
     @allure.step('Перетащить элемент')
     def drag_and_drop_on_element(self, locator_one, locator_two):

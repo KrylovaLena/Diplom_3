@@ -10,6 +10,7 @@ from pages.main_page import MainPage
 from pages.header_page import HeaderPage
 from pages.orders_page import OrdersPage
 from pages.personal_account_page import PersonalAccountPage
+from helpers import Helpers
 
 
 
@@ -95,9 +96,8 @@ def authorization(driver, create_and_delete_user):
 @pytest.fixture
 def orders_numbers(create_and_delete_user):
     payload, token = create_and_delete_user
-    OrdersPage.create_order(payload, token)
-    OrdersPage.create_order(payload, token)
-    user_orders = OrdersPage.get_user_orders(payload, token)
+    Helpers().create_order(token)
+    user_orders = Helpers().get_user_orders(token)
     orders_numbers = []
     for order in user_orders:
         orders_numbers.append(order["number"])

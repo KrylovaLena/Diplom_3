@@ -27,10 +27,10 @@ class PasswordRecoveryPage(BasePage):
     Он вызывает метод click_on_element с локатором PasswordRecoveryLocators.SHOW_PASSWORD_BUTTON, который выполняет клик на соответствующую кнопку."""
     @allure.step('Найти кнопку Сохранить')
     def find_save_button(self):
-        self.find_my_element(PasswordRecoveryLocators.SAVE_BUTTON)
+        self.wait_until_element_visibility(PasswordRecoveryLocators.SAVE_BUTTON)
 
     """Метод  используется для поиска активного поля пароля. /
     Он вызывает метод find_my_element с локатором PasswordRecoveryLocators.INPUT_ACTIVE, который ищет и возвращает активное поле пароля."""
     @allure.step('Найти активное поле Пароль')
     def find_input_active(self):
-        return self.find_my_element(PasswordRecoveryLocators.INPUT_ACTIVE)
+        return self.wait_until_element_visibility(PasswordRecoveryLocators.INPUT_ACTIVE)

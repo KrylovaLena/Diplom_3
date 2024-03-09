@@ -29,7 +29,7 @@ class HeaderPage(BasePage):
 
     @allure.step('Заполняем поле "email"')
     def set_email(self, email):
-        self.send_keys(HeaderPageLocators.EMAIL, email)
+        self.set_text_to_element(HeaderPageLocators.EMAIL, email)
 
     @allure.step('Нажимаем на поле "Пароль"')
     def click_pass_field(self):
@@ -37,7 +37,7 @@ class HeaderPage(BasePage):
 
     @allure.step('Заполняем поле "Пароль"')
     def set_pass(self, password):
-        self.send_keys(HeaderPageLocators.PASSWORD, password)
+        self.set_text_to_element(HeaderPageLocators.PASSWORD, password)
 
     @allure.step('Нажимаем кнопку «Войти»')
     def click_login_button(self):
